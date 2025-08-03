@@ -7,11 +7,11 @@ import flowerData from "./data/flowers.json"
 const port = process.env.PORT || 8080
 const app = express()
 
-// Add middlewares to enable cors and json body parsing
+// Add middlewares to enable cors and json body parsing. Middleware is code that runs between the request and the response, it can modify the request, the response, or decide how the server should continue.
 app.use(cors())
 app.use(express.json())
 
-// Start defining your routes here
+// Start defining your routes here. Add documentation of the API here with express-list-endpoints.
 app.get("/", (req, res) => {
 const endpoints = listEndpoints(app)
 res.json({
@@ -21,7 +21,7 @@ res.json({
 
 })
 
-// endpoint for getting all flowers
+// Endpoint for getting all flowers and should be called /flowers. We're using RESTFUL APIs.
 app.get ("/flowers", (req, res) => {
   const { color, botanicalFamily } = req.query
 
