@@ -1,3 +1,7 @@
+import express from "express"
+
+
+const router = express.Router()
 
 // Endpoint for getting all flowers and should be called /flowers. We're using RESTFUL APIs.
 app.get ("/flowers", (req, res) => {
