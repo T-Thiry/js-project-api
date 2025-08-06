@@ -3,8 +3,8 @@ import express from "express"
 import listEndpoints from "express-list-endpoints"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
-import thoughtRoutes from "./routes/thoughtRoutes"
-import userRoutes from "./routes/userRoutes"
+import thoughtRoutes from "./routes/thoughtRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 import Thought from "../models/Thought.js"
 
 dotenv.config()
