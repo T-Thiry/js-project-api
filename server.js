@@ -2,6 +2,9 @@ import cors from "cors"
 import express from "express"
 import listEndpoints from "express-list-endpoints"
 import mongoose from "mongoose"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 // Connect to Mongo DB database
 const mongoURL = process.env.MONGO_URL || "mongodb://localhost/happy-thoughts-api"
