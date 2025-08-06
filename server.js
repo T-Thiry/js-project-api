@@ -5,7 +5,6 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 import thoughtRoutes from "./routes/thoughtRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
-import { Thought } from "../models/Thought.js"
 
 dotenv.config()
 
@@ -21,18 +20,6 @@ const app = express()
 // Add middlewares to enable cors and json body parsing. 
 app.use(cors())
 app.use(express.json())
-
-
-// Seed database
-if (process.env.RESET_DB) {
-  const seedDatabase = async () => {
-    await Thought.deleteMany({})
-    thoughtData.forEach(thought => {
-      new Thought(thought).save()
-    })
-  }
-    seedDatabase()
-  }
  
 
 // Start defining your routes here. Add documentation of the API here with express-list-endpoints.
