@@ -35,5 +35,36 @@ router.post("/register", async (req, res) => {
  })
 
 
+// POST - Login an existing user
+router.post("/login", async (req, res) => {
+  try {
+  const { email, password } = req.body
+  const user = await User.findOne({ email })
+ 
+    if (user && bcrypt.compareSync(password, user.password)) {
+      res.status(200).json({
+        success: true,
+        accessToken: user.accessToken,
+        id: user.id,
+        message: "Login successful"
+      })
+ 
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Invalid email or password"
+    })
+  }
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: error.message
+    })
+  }
+ })
+ 
+
  export default router
  
