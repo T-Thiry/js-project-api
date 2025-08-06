@@ -2,7 +2,7 @@ import cors from "cors"
 import express from "express"
 import listEndpoints from "express-list-endpoints"
 
-import flowerData from "./data/flowers.json"
+
 
 const port = process.env.PORT || 8080
 const app = express()
