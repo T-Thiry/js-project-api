@@ -1,20 +1,42 @@
 import express from "express"
-
+import { Thought } from './models/Thought.js';
+import { authenticateUser } from "../middleware/authenticateUser.js"
 
 const router = express.Router()
 
 // Endpoint for getting all flowers and should be called /flowers. We're using RESTFUL APIs.
-app.get ("/flowers", (req, res) => {
+router.get ("/thoughts", async (req, res) => {
   const { color, botanicalFamily } = req.query
+  try { 
+    const query = req.query;
+    const filteredThoughts = await Thought.find(query)
 
-  let filteredFlowers = flowerData
-
-  if (color) {
-    filteredFlowers = filteredFlowers.filter(flower => flower.color.toLowerCase() === color.toLowerCase())
+  if (filteredThoughts.length === 0) {
+    // Return 404 if no thoughts are found
+    return res.status(404).json({
+      success: false,
+      response: [],
+      message: "No thoughts found for that query. Try another one."
+    })
   }
 
-  res.json(filteredFlowers)
+   // Return 200 if thoughts are found
+  res.status(200).json({
+    success: true,
+    response: filteredThoughts,
+    message: "Success!"
+  })
+
+  } catch (error) {
+   // Return 500 server error database query fails.
+    res.status(500).json({
+      success: false,
+      response: error,
+      message: "Internal server error! Failed to fetch thoughts."
+    })
+  }
 })
+
 
 
 // endpoint for getting one flower
