@@ -33,7 +33,7 @@ if (process.env.RESET_DB) {
 app.get("/", (req, res) => {
 const endpoints = listEndpoints(app)
 res.json({
-  message: "Welcome to the Flower API",
+  message: "Welcome to the Happy Toughts",
   endpoints: endpoints
 })
 
