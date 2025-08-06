@@ -38,16 +38,31 @@ router.get ("/thoughts", async (req, res) => {
 })
 
 
+// GET - Get a single thought by ID (endpoint is /thoughts/:id)
+router.get ("/thoughts/:id", async (req, res) => {
+  const { id } = req.params
 
-// endpoint for getting one flower
-app.get ("/flowers/:id", (req, res) => {
+  try { 
+    const thought = await Thought.findById(id)
 
-  const flower = flowerData.find((flower) => flower.id === +req.params.id)
-
-// tiny error handling if we get an id that doesnt exist in our data
-  if (!flower) {
-    return res.status(404).json({ error: "flower not found" })
+  if (!thought) {
+    return res.status(404).json({
+      success: false,
+      response: [],
+      message: "Thought not found"
+    })
   }
 
-  res.json(flower)
+  res.status(200).json({
+    success: true,
+    response: thought
+  })
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error,
+      message: "Internal server error! Failed to fetch thought."
+    })
+  }
 })
