@@ -131,3 +131,37 @@ router.post("/thoughts", authenticateUser, async (req, res) => {
   }
 })
  
+
+// PATCH - Update a thought (endpoint is thoughts/:id)
+router.patch("/thoughts/:id", authenticateUser, async (req, res) => {
+  const { id } = req.params
+  const { message } = req.body
+ 
+  try {
+    const updatedThought = await Thought.findByIdAndUpdate(id, { message }, {
+      new: true,
+      runValidators: true
+    })
+ 
+    if(!updatedThought) {
+      return res.status(404).json({
+        success: false,
+        response: [],
+        message: "Thought not found"})
+    }
+  
+    res.status(200).json({
+      success: true,
+      response: updatedThought,
+      message: "Thought updated successfully"
+    })
+ 
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error,
+      message: "Internal server error! Failed to update thought."
+      })
+  }
+ })
+ 
