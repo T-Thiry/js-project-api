@@ -13,9 +13,21 @@ mongoose.connect(mongoURL)
 const port = process.env.PORT || 8080
 const app = express()
 
-// Add middlewares to enable cors and json body parsing. Middleware is code that runs between the request and the response, it can modify the request, the response, or decide how the server should continue.
+// Add middlewares to enable cors and json body parsing. 
 app.use(cors())
 app.use(express.json())
+
+// Seed database
+if (process.env.RESET_DB) {
+  const seedDatabase = async () => {
+    await Thought.deleteMany({})
+    thoughtData.forEach(thought => {
+      new Thought(thought).save()
+    })
+  }
+    seedDatabase()
+  }
+ 
 
 // Start defining your routes here. Add documentation of the API here with express-list-endpoints.
 app.get("/", (req, res) => {
