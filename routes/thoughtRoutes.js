@@ -164,4 +164,50 @@ router.patch("/thoughts/:id", authenticateUser, async (req, res) => {
       })
   }
  })
+
+
+// DELETE - Delete a thought (endpoint is thoughts/:id)
+router.delete("/thoughts/:id", authenticateUser, async (req, res) => {
+  const { id } = req.params
+  const userId = req.user._id
+ 
+  try {
+    const thought = await Thought.findById(id)
+ 
+    if (!thought) {
+      return res.status(404).json({
+        success: false,
+        response: [],
+        message: "Failed to delete thought! Thought not found"})
+    }
+   
+    if (thought.user.toString() !== userId.toString()) {
+      return res.status(403).json({
+        success: false,
+        response: [],
+        message: "Failed to delete thought! You are not authorized to delete this thought."
+      })
+    }
+ 
+    // Delete the thought
+    await Thought.findByIdAndDelete(id)
+ 
+    res.status(200).json({
+      success: true,
+      response: id,
+      message: "Thought deleted successfully"
+      })
+ 
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error,
+      message: "Internal server error! Failed to update thought."
+      })
+  }
+ })
+ 
+ 
+ export default router
+ 
  
