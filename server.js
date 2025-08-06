@@ -3,6 +3,8 @@ import express from "express"
 import listEndpoints from "express-list-endpoints"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
+import thoughtRoutes from "./routes/thoughtRoutes"
+import userRoutes from "./routes/userRoutes"
 
 dotenv.config()
 
@@ -31,13 +33,16 @@ if (process.env.RESET_DB) {
 
 // Start defining your routes here. Add documentation of the API here with express-list-endpoints.
 app.get("/", (req, res) => {
-const endpoints = listEndpoints(app)
-res.json({
-  message: "Welcome to the Happy Toughts",
-  endpoints: endpoints
+  const endpoints = listEndpoints(app)
+  res.json({
+    message: "Welcome to the Happy Toughts",
+    endpoints: endpoints
+  })
 })
 
-})
+app.use("/users", userRoutes)
+app.use("/thoughts", thoughtRoutes)
+
 
 // Endpoint for getting all flowers and should be called /flowers. We're using RESTFUL APIs.
 app.get ("/flowers", (req, res) => {
