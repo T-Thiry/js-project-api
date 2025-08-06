@@ -1,8 +1,11 @@
 import cors from "cors"
 import express from "express"
 import listEndpoints from "express-list-endpoints"
+import mongoose from "mongoose"
 
-
+// Connect to Mongo DB database
+const mongoURL = process.env.MONGO_URL || "mongodb://localhost/happy-thoughts-api"
+mongoose.connect(mongoURL)
 
 const port = process.env.PORT || 8080
 const app = express()
