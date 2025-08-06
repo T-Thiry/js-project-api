@@ -99,3 +99,35 @@ router.patch("/thoughts/:id/like", async (req,res) => {
     })
   }
 })
+
+
+// POST - Create a thought (endpoint is /thoughts)
+router.post("/thoughts", authenticateUser, async (req, res) => {
+  const { message } = req.body
+  const user = req.user
+ 
+  try {
+    const newThought = await new Thought({ message, user: user._id }).save()
+ 
+    if (!newThought)
+      res.status(400).json({
+        success: false,
+        response: [],
+        message: "Failed to post thought"
+      })
+
+      res.status(201).json({
+        success: true,
+        response: newThought,
+        message: "Thought created successfully."
+      })
+ 
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error,
+      message: "Internal server error! Failed to post thought"
+    })
+  }
+})
+ 
