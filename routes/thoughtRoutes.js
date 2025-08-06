@@ -4,9 +4,8 @@ import { authenticateUser } from "../middleware/authenticateUser.js"
 
 const router = express.Router()
 
-// Endpoint for getting all flowers and should be called /flowers. We're using RESTFUL APIs.
-router.get ("/thoughts", async (req, res) => {
-  const { color, botanicalFamily } = req.query
+// Endpoint for getting all thoughts.
+router.get("/thoughts", async (req, res) => {
   try { 
     const query = req.query;
     const filteredThoughts = await Thought.find(query)
@@ -39,7 +38,7 @@ router.get ("/thoughts", async (req, res) => {
 
 
 // GET - Get a single thought by ID (endpoint is /thoughts/:id)
-router.get ("/thoughts/:id", async (req, res) => {
+router.get("/thoughts/:id", async (req, res) => {
   const { id } = req.params
 
   try { 
