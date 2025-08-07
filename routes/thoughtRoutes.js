@@ -1,5 +1,5 @@
 import express from "express"
-import { Thought } from 'models/thought.js'
+import { Thought } from '../models/thought.js'
 import { authenticateUser } from "../middleware/authenticateUser.js"
 
 const router = express.Router()
