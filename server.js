@@ -1,10 +1,10 @@
-import cors from "cors"
-import express from "express"
-import listEndpoints from "express-list-endpoints"
-import mongoose from "mongoose"
-import dotenv from "dotenv"
-import thoughtRoutes from "./routes/thoughtRoutes.js"
-import userRoutes from "./routes/userRoutes.js"
+import cors from 'cors'
+import express from 'express'
+import listEndpoints from 'express-list-endpoints'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import thoughtRoutes from './routes/thoughtRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 

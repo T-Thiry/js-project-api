@@ -1,6 +1,6 @@
-import express from "express"
-import { Thought } from '/Users/tavanthiry/Desktop/js-project-api/models/thought.js'
-import { authenticateUser } from "../middleware/authenticateUser.js"
+import express from 'express'
+import { Thought } from '../models/thought.js'
+import { authenticateUser } from '../middleware/authenticateUser.js'
 
 const router = express.Router()
 
