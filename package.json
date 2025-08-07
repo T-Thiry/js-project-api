@@ -4,8 +4,8 @@
   "description": "Project API",
   "type": "module",
   "scripts": {
-    "start": "babel-node src/routes/server.js",
-    "dev": "nodemon src/routes/server.js --exec babel-node"
+    "start": "babel-node routes/server.js",
+    "dev": "nodemon routes/server.js --exec babel-node"
   },
   "author": "",
   "license": "ISC",
