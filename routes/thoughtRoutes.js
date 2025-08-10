@@ -5,7 +5,7 @@ import { authenticateUser } from '../middleware/authenticateUser.js'
 const router = express.Router()
 
 // Endpoint for getting all thoughts.
-router.get("/thoughts", async (req, res) => {
+router.get("/", async (req, res) => {
   try { 
     const query = req.query;
     const filteredThoughts = await Thought.find(query)
@@ -102,7 +102,7 @@ router.patch("/thoughts/:id/like", async (req,res) => {
 
 
 // POST - Create a thought (endpoint is /thoughts)
-router.post("/thoughts", authenticateUser, async (req, res) => {
+router.post("/", authenticateUser, async (req, res) => {
   const { message } = req.body
   const user = req.user
  
