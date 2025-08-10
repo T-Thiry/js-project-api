@@ -10,7 +10,7 @@ dotenv.config()
 
 
 // Connect to Mongo DB database
-const mongoURL = process.env.MONGO_URL || "mongodb://localhost/happy-thoughts-api"
+const mongoURL = process.env.MONGO_URL || "mongodb://localhost:27017/happythoughts"
 mongoose.connect(mongoURL)
 
 const port = process.env.PORT || 8080
