@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 
 
 // GET - Get a single thought by ID (endpoint is /thoughts/:id)
-router.get("/thoughts/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params
 
   try { 
@@ -68,7 +68,7 @@ router.get("/thoughts/:id", async (req, res) => {
 
 
 // PATCH - Like a thought
-router.patch("/thoughts/:id/like", async (req,res) => {
+router.patch("/:id/like", async (req,res) => {
   const { id } = req.params
  
   try {
@@ -133,7 +133,7 @@ router.post("/", authenticateUser, async (req, res) => {
  
 
 // PATCH - Update a thought (endpoint is thoughts/:id)
-router.patch("/thoughts/:id", authenticateUser, async (req, res) => {
+router.patch("/:id", authenticateUser, async (req, res) => {
   const { id } = req.params
   const { message } = req.body
  
@@ -167,7 +167,7 @@ router.patch("/thoughts/:id", authenticateUser, async (req, res) => {
 
 
 // DELETE - Delete a thought (endpoint is thoughts/:id)
-router.delete("/thoughts/:id", authenticateUser, async (req, res) => {
+router.delete("/:id", authenticateUser, async (req, res) => {
   const { id } = req.params
   const userId = req.user._id
  
