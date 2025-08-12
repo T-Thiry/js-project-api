@@ -103,8 +103,7 @@ router.patch("/:id/like", async (req,res) => {
 
 // POST - Create a thought (endpoint is /thoughts)
 router.post("/", authenticateUser, async (req, res) => {
-  const { message } = req.body
-  const user = req.user
+  const { message, user } = req.body
  
   try {
     const newThought = await new Thought({ message, user: user._id }).save()
