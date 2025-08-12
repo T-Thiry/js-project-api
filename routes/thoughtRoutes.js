@@ -106,7 +106,7 @@ router.post("/", authenticateUser, async (req, res) => {
   const { user, message } = req.body
  
   try {
-    const newThought = await new Thought({ message, user: user._Id }).save()
+    const newThought = await new Thought({ message, user: user._id }).save()
  
     if (!newThought) {
       res.status(400).json({
