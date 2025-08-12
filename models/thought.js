@@ -2,10 +2,8 @@ import mongoose from 'mongoose'
 
 const thoughtSchema = new mongoose.Schema({
   _id: {
-    type: Number,
-    required: true,
-    unique: true, 
-    default: () => Math.floor(Math.random() * 1000000) // Random ID for simplicity
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId()
   },
   message: {
     type: String,
