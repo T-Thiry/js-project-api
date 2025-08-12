@@ -3,7 +3,7 @@ import { User } from '../models/user.js'
 
 export const authenticateUser = async (req, res, next) => {
  try {
-   const user = await User.findOne ({ accessToken: req.header("Authorization") })
+   const user = await User.findOne({ accessToken: req.header("Authorization") })
    
    if (user) {
      req.user = user
