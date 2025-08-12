@@ -8,9 +8,9 @@ const router = express.Router()
 // POST - Register a new user
 router.post("/register", async (req, res) => {
   try {
-    const { email, password } = req.body
+    const { name, email, password } = req.body
     const salt = bcrypt.genSaltSync()
-    const user = new User({ email, password: bcrypt.hashSync(password, salt)
+    const user = new User({ name, email, password: bcrypt.hashSync(password, salt)
     }) 
  
     //await to not send response before database finished saving
