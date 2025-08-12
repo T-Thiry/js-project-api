@@ -3,6 +3,12 @@ import crypto from 'crypto'
 
 
 const userSchema = new mongoose.Schema({
+_id: {
+  type: Number,
+  required: true,
+  unique: true, 
+  default: () => Math.floor(Math.random() * 1000000) // Random ID for simplicity
+},
  name: {
    type: String,
    required: true,
