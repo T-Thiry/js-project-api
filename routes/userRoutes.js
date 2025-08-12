@@ -26,10 +26,11 @@ router.post("/register", async (req, res) => {
     })
  
   } catch (error) {
+    console.error("Signup error:", error)
     res.status(400).json({
       success: false,
       message: "Failed to create user.",
-      response: error
+      response: error.message 
     })
   }
  })
