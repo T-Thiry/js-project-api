@@ -109,7 +109,7 @@ router.post("/", authenticateUser, async (req, res) => {
     const newThought = await new Thought({ message, user: user._id }).save()
  
     if (!newThought) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         response: [],
         message: "Failed to post thought"
