@@ -103,11 +103,11 @@ router.patch("/:id/like", async (req,res) => {
 
 // POST - Create a thought (endpoint is /thoughts)
 router.post("/", authenticateUser, async (req, res) => {
-  const { user, message } = req.body
+  const { message } = req.body
  
   try {
-    const newThought = await new Thought({ message, user: user._id }).save()
- 
+    const newThought = await new Thought({ message, user: req.user._id }).save()
+
     if (!newThought) {
       return res.status(400).json({
         success: false,
